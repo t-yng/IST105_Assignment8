@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment#7 | IST105</title>
+    <title>Assignment#8 | IST105</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -16,10 +16,12 @@
         text-align: center;
       }
 
+      form {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
       .form-group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         position: relative;
         left: -16px;
         margin-bottom: 15px;
@@ -51,15 +53,18 @@
     </style>
   </head>
   <body>
-    <h1>Assignment#7 IST105</h1>
+    <h1>Assignment#8 IST105</h1>
     <form action="/process.php" method="GET">
       <div class="form-group">
-        <label for="numbers">Numbers: </label>
-        <input type="text" id="numbers" name="numbers" placeholder="3, 5, 7, 9" />
+        <label for="mac_address">Mac Address: </label>
+        <input type="text" id="mac_address" name="mac_address" placeholder="00:00:00:00:00:00" />
       </div>
       <div class="form-group">
-        <label for="threshold">Threshold: </label>
-        <input type="text" id="threshold" name="threshold" placeholder="4" />
+        <label for="dhcp_version">DHCP Version: </label>
+        <select id="dhcp_version" name="dhcp_version">
+          <option value="DHCPv4">DHCPv4</option>
+          <option value="DHCPv6">DHCPv6</option>
+        </select>
       </div>
       <button>Submit</button>
     </form>

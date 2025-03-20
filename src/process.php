@@ -1,18 +1,21 @@
 <?php
 $PYTHON_SCRIPT = "network_config.py";
 
-$numbers = $_GET['numbers'];
-$threshold = $_GET['threshold'];
+$mac_address = $_GET['mac_address'];
+$dhcp_version = $_GET['dhcp_version'];
 
 $output = [];
 $result = 0;
-exec("python3 $PYTHON_SCRIPT '$numbers' $threshold", $output, $result);
+exec("python3 $PYTHON_SCRIPT '$mac_address' $dhcp_version", $output, $result);
 
 if($result !== 0) {
   echo "<h1 style='color: red'>$output[0]</h1>";
   echo "<a href='/form.php'>Back to form</a>";
   exit;
 }
+
+$output = json_decode($output[0], true);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,14 +28,16 @@ if($result !== 0) {
   <body>
     <section>
       <h2>Input</h2>
-      <p>Integers separated by commas: <?= $numbers ?>
-      <p>Threshold: <?= $threshold ?>
+      <p>Mac Address: <?= $mac_address ?>
+      <p>DHCP Version: <?= $dhcp_version ?>
     </section>
     <section>
-      <h2>Results:</h2>
-      <?php foreach($output as $key=>$value): ?>
-        <?= $value ?>
-      <?php endforeach ?>
+      <h2>Output (Assigned IP and Lease Info):</h2>
+      <p>mac_address: <?= $output['mac_address'] ?></p>
+      <p>Assigned IP: <?= $output['ip'] ?></p>
+      <?php if(isset($output['lease_time'])): ?>
+        <p>Lease Time: <?= $output['lease_time'] . " seconds" ?></p>
+      <?php endif; ?>
     </section>
     <a href='/form.php'>Back to form</a>
   </body>
