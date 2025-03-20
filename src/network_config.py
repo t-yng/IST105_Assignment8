@@ -66,8 +66,6 @@ class DHCPv4(DHCP):
         assigned_hosts = list(map(lambda ip: int(ip.split(".")[3]), assigned_ipv4_list))
         available_hosts = range(2, 254)
 
-        print(assigned_hosts)
-
         new_host = None
         for host in available_hosts:
             if host in assigned_hosts:
