@@ -1,5 +1,5 @@
-# IST105 Assignment#7
-This is the repository for IST105 assignment#7.
+# IST105 Assignment#8
+This is the repository for IST105 assignment#8.
 
 ## Develop local
 Launch docker container and access the website
